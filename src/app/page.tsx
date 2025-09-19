@@ -55,7 +55,7 @@ export default function Home() {
             read Ethereum securities
           </h1>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-            Tokenized bonds shouldn't be mystery ERC-20s. ERC-FIX adds a canonical FIX instrument string to the token—so banks, brokers, and asset managers can parse terms instantly and plug into existing FIX workflows.
+            Tokenized bonds shouldn&apos;t be mystery ERC-20s. ERC-FIX adds a canonical FIX instrument string to the token—so banks, brokers, and asset managers can parse terms instantly and plug into existing FIX workflows.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <a href="#spec" className="bg-gradient-to-r from-orange-500 to-blue-600 text-white px-8 py-4 rounded-md text-lg font-semibold hover:from-orange-600 hover:to-blue-700 transition-all">
@@ -85,10 +85,10 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Context</h2>
               <div className="space-y-6 text-gray-600 leading-relaxed">
                 <p>
-                  FIX is how the world's credit markets talk—orders, quotes, and instrument data move across FIX rails every day. Yet most tokenized bonds land on Ethereum as plain ERC-20s with ad-hoc metadata.
+                  FIX is how the world&apos;s credit markets talk—orders, quotes, and instrument data move across FIX rails every day. Yet most tokenized bonds land on Ethereum as plain ERC-20s with ad-hoc metadata.
                 </p>
                 <p>
-                  When those tokens meet FIX-native systems, identity and terms don't resolve automatically. Result: brittle integrations, manual mapping, slow onboarding.
+                  When those tokens meet FIX-native systems, identity and terms don&apos;t resolve automatically. Result: brittle integrations, manual mapping, slow onboarding.
                 </p>
                 <p>
                   ERC-FIX bridges this gap with a minimal standard that makes Ethereum securities natively legible to FIX systems.
@@ -169,7 +169,7 @@ export default function Home() {
               <ul className="space-y-4 text-gray-600">
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3">•</span>
-                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">fixSchema()</code> → e.g. "FIX.4.4"</span>
+                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">fixSchema()</code> → e.g. &quot;FIX.4.4&quot;</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3">•</span>
@@ -251,7 +251,7 @@ export default function Home() {
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">2</div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Register</h3>
-              <p className="text-gray-600">Issuer registers token's fixDigest in registry</p>
+              <p className="text-gray-600">Issuer registers token&apos;s fixDigest in registry</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">3</div>
