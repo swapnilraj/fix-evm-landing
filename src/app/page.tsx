@@ -1,5 +1,18 @@
 "use client";
 
+// Simple tooltip component
+function Tooltip({ children, text }: { children: React.ReactNode; text: string }) {
+  return (
+    <span className="group relative inline-block">
+      {children}
+      <span className="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 text-xs text-white bg-gray-900 rounded-md whitespace-nowrap z-10 pointer-events-none">
+        {text}
+        <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900"></span>
+      </span>
+    </span>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
@@ -49,13 +62,13 @@ export default function Home() {
             ERC‑FIX: embedded FIX descriptors for onchain securities
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
-            Embed a canonical FIX descriptor in your asset contract. Verify any field with Merkle proofs. Plug into existing FIX workflows without custom adapters.
+            Embed a canonical FIX descriptor in your asset contract. Verify any field with <Tooltip text="Merkle proofs = cryptographic proofs that let you verify any field against a committed root"><span className="cursor-help underline decoration-dotted">Merkle proofs</span></Tooltip>. Plug into existing FIX workflows without custom adapters.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#spec" className="bg-gray-900 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-black transition-colors">
-              Read the Spec
+            <a href="https://fixdescriptor.vercel.app/spec" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-orange-500 to-blue-600 text-white px-8 py-4 rounded-md text-lg font-semibold hover:from-orange-600 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl">
+              Read the Full Spec ↗
             </a>
-            <a href="https://fixdescriptor.vercel.app/" className="border border-gray-300 text-gray-700 px-8 py-4 rounded-md text-lg font-semibold hover:bg-gray-50 transition-colors">
+            <a href="https://fixdescriptor.vercel.app/" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-md text-lg font-semibold hover:border-gray-400 hover:bg-gray-50 transition-colors">
               Try the Demo ↗
             </a>
           </div>
@@ -64,13 +77,32 @@ export default function Home() {
 
       {/* Problem (today) Section - moved up for narrative clarity */}
       <section className="relative z-10 container mx-auto px-6 py-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">The problem (today)</h2>
-          <ul className="grid md:grid-cols-3 gap-4 text-gray-700">
-            <li className="bg-gray-50 p-4 rounded-lg">Token metadata is ad-hoc; FIX identity doesn&apos;t resolve</li>
-            <li className="bg-gray-50 p-4 rounded-lg">On-chain FIX parsing is gas-heavy and brittle</li>
-            <li className="bg-gray-50 p-4 rounded-lg">No deterministic binding to a FIX dictionary</li>
-          </ul>
+        <div className="max-w-5xl mx-auto">
+          <div className="flex justify-center mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 relative inline-block">
+              <span className="relative z-10">The problem</span>
+              <div className="absolute inset-x-0 bottom-1 h-3 bg-gradient-to-r from-red-200/40 to-orange-200/40 -z-10"></div>
+            </h2>
+          </div>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-10">Most tokens expose issuer-specific fields/JSON/URIs. The instrument data may exist, but it isn&apos;t standardized for other systems—creating ambiguity, bespoke adapters, and no reliable way to bind a token to a precise instrument definition across platforms.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Non-standard metadata</h3>
+              <p className="text-sm text-gray-600 mb-3">Issuer fields/JSON varies by project. Fields may exist but not in a canonical uniform representation, so downstream systems can&apos;t reliably map tokens to instruments.</p>
+              <div className="text-xs text-gray-500 bg-white border border-gray-200 rounded-md p-3">e.g., key identity and terms not expressed canonically: Security ID/Source, Maturity Date, Coupon Rate</div>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Integration gaps with existing systems</h3>
+              <p className="text-sm text-gray-600 mb-3">Without a standard payload onchain, OMS/EMS, custodians, and risk systems need bespoke adapters per token.</p>
+              <div className="text-xs text-gray-500 bg-white border border-gray-200 rounded-md p-3">Desired: one standard payload that downstream systems can recognize consistently.</div>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">No field‑level verifiability</h3>
+              <p className="text-sm text-gray-600 mb-3">Receivers can&apos;t independently check a specific term (e.g., coupon, maturity) against a standardized, issuer‑provided source of truth.</p>
+              <div className="text-xs text-gray-500 bg-white border border-gray-200 rounded-md p-3">Desired: a standard way to attest any field unambiguously.</div>
+            </div>
+          </div>
+          
         </div>
       </section>
 
@@ -79,8 +111,23 @@ export default function Home() {
       {/* What ERC-FIX is Section */}
       <section id="what" className="relative z-10 container mx-auto px-6 py-20">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">What ERC-FIX is</h2>
-          <p className="text-sm text-gray-500 text-center mb-10">Policy‑agnostic: defines how to encode, not what to include.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">What ERC‑FIX is</h2>
+          <p className="text-base text-gray-600 text-center mb-8 max-w-3xl mx-auto">ERC‑FIX is a simple standard that lets tokens carry instrument information in a way that other systems understand. It uses the market’s existing language—FIX—for identification and terms, and defines a uniform, deterministic way to attach that information to the token.</p>
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Use the language markets speak</h3>
+              <p className="text-sm text-gray-600">Describe instruments using standard FIX tags that trading and data systems already understand.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Make it uniform and deterministic</h3>
+              <p className="text-sm text-gray-600">A single, canonical layout so every implementation produces the same bytes for the same descriptor.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Attach it to the asset</h3>
+              <p className="text-sm text-gray-600">Keep the descriptor with the token itself, so consumers can fetch and verify it directly from the contract.</p>
+            </div>
+          </div>
+          <p className="text-sm text-gray-500 text-center mb-10">Policy‑agnostic: defines how to encode and attach descriptors, not what business fields must be included.</p>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Token Interface Card */}
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
@@ -113,11 +160,11 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">CBOR Storage</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-6"><Tooltip text="CBOR = a compact, standard binary format; here we use a deterministic flavor"><span className="cursor-help underline decoration-dotted">CBOR</span></Tooltip> Storage</h3>
               <ul className="space-y-4 text-gray-600">
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3">•</span>
-                  <span>Canonical CBOR stored via SSTORE2-style contracts</span>
+                  <span>Canonical CBOR stored via <Tooltip text="SSTORE2 = store bytes as contract bytecode and read with EXTCODECOPY"><span className="cursor-help underline decoration-dotted">SSTORE2-style contracts</span></Tooltip></span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3">•</span>
@@ -169,7 +216,7 @@ export default function Home() {
       </section>
 
       {/* How it works Section */}
-      <section id="how" className="relative z-10 container mx-auto px-6 py-20">
+      <section id="how" className="relative z-10 bg-gradient-to-br from-gray-50 to-blue-50/30 container mx-auto px-6 py-20">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-2 text-center">How it works</h2>
           <p className="text-sm text-gray-500 text-center mb-10">Deterministic outputs • Efficient verification • Interop and clear audit trails</p>
@@ -231,6 +278,54 @@ export default function Home() {
                 aria-label="Copy example pathCBOR JSON"
               >Copy example path [15]</button>
               <span>SOH not used; business fields only.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why FIX (motivation) */}
+      <section className="relative z-10 bg-gradient-to-br from-orange-50/50 to-blue-50/50 container mx-auto px-6 py-14">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">Why FIX</h2>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-8">FIX is the lingua franca for instrument identity and trading across traditional markets. Meeting systems where they already are dramatically reduces integration cost and risk.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">De‑facto market language</h3>
+              <p className="text-sm text-gray-600">Used by venues, OMS/EMS, custodians, data vendors, and risk systems.</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Rich, well‑specified fields</h3>
+              <p className="text-sm text-gray-600">Canonical tags for identification and terms (e.g., 48/22, 541, 223, 461).</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl border border-gray-200">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Battle‑tested interop</h3>
+              <p className="text-sm text-gray-600">Standard schemas and workflows already power global fixed‑income infrastructure.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Solution: ERC‑FIX */}
+      <section className="relative z-10 container mx-auto px-6 py-14">
+        <div className="max-w-5xl mx-auto">
+          <div className="flex justify-center mb-4">
+            <h2 className="text-3xl font-bold relative inline-block">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-600">Solution: ERC‑FIX</span>
+            </h2>
+          </div>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-10">Standardize how tokens carry instrument data by embedding a canonical FIX descriptor on‑chain, with a cryptographic commitment for field‑level proofs.</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100/50 p-6 rounded-xl border border-orange-200/50">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Embedded descriptor</h3>
+              <p className="text-sm text-gray-600">Descriptor lives in the asset contract (no registry), discoverable and permissionless.</p>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 p-6 rounded-xl border border-blue-200/50">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Canonical CBOR + dict lock</h3>
+              <p className="text-sm text-gray-600">Deterministic CBOR, integer keys, and <code className="bg-gray-100 px-1 rounded">dictHash</code> bind semantics.</p>
+            </div>
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 p-6 rounded-xl border border-purple-200/50">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Merkle‑proof verification</h3>
+              <p className="text-sm text-gray-600">Per‑field proofs against the committed root—no on‑chain FIX parsing required.</p>
             </div>
           </div>
         </div>
@@ -307,7 +402,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Spec highlights</h2>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="bg-white p-6 rounded-xl shadow">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">Canonicalization</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Canonicalization <Tooltip text="One deterministic layout so everyone gets the same bytes for the same content"><span className="inline-block align-middle text-gray-400 cursor-help">ⓘ</span></Tooltip></h3>
               <ul className="space-y-2 text-gray-600">
                 <li>Map FIX tags/groups to a canonical tree</li>
                 <li>Canonical CBOR: uint keys, sorted, definite lengths</li>
@@ -432,7 +527,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Independent Standards Body - moved near footer */}
+      {/* Independent Standards Body - moved near footer
       <section className="relative z-10 container mx-auto px-6 py-16">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Independent Standards Body</h2>
@@ -470,7 +565,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer */}
       <footer className="relative z-10 bg-gray-900 py-12">
