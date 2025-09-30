@@ -49,7 +49,7 @@ export default function Home() {
               Resources
             </a>
           </div>
-          <a href="https://github.com/erc-fix" className="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50 transition-colors font-medium">
+          <a href="https://github.com/swapnilraj/fix-descriptor" className="border border-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-50 transition-colors font-medium">
             GitHub ↗
           </a>
         </div>
@@ -924,7 +924,7 @@ export default function Home() {
         </div>
       </section> */}
 
-      {/* Footer */}
+      {/* Footer
       <footer className="relative z-10 bg-gray-900 py-12">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -950,7 +950,7 @@ export default function Home() {
             <div>
               <h3 className="text-white font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="https://github.com/erc-fix" className="hover:text-white transition-colors">GitHub</a></li>
+                <li><a href="https://github.com/swapnilraj/fix-descriptor" className="hover:text-white transition-colors">GitHub</a></li>
                 <li><a href="#docs" className="hover:text-white transition-colors">Documentation</a></li>
                 <li><a href="#audits" className="hover:text-white transition-colors">Security Audits</a></li>
               </ul>
@@ -969,7 +969,8 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </footer>
+      </footer> */}
+
     </div>
   );
 }
