@@ -59,19 +59,23 @@ export default function Home() {
       <section id="main-content" className="relative z-10 container mx-auto px-6 py-24">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            ERC‑FIX: embedded FIX descriptors for onchain securities
+            Traditional finance and blockchain don&apos;t speak the same language
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
-            Embed a canonical FIX descriptor in your asset contract. Verify any field with <Tooltip text="Merkle proofs = cryptographic proofs that let you verify any field against a committed root"><span className="cursor-help underline decoration-dotted">Merkle proofs</span></Tooltip>. Plug into existing FIX workflows without custom adapters.
+          <p className="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed max-w-3xl mx-auto">
+            You tokenize a bond. Your custodian&apos;s system can&apos;t read it. Your risk platform can&apos;t classify it. You build custom adapters for every platform—and they break with every update.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <p className="text-base md:text-lg text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto font-medium">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-600">ERC‑FIX</span> solves this by embedding standardized <Tooltip text="FIX (Financial Information eXchange) is the global protocol that powers securities trading across 300+ venues worldwide"><span className="cursor-help underline decoration-dotted">FIX</span></Tooltip> descriptors directly in your token contract —— so every system can read it natively. No adapters. No waiting.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <a href="https://fixdescriptor.vercel.app/spec" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-orange-500 to-blue-600 text-white px-8 py-4 rounded-md text-lg font-semibold hover:from-orange-600 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl">
-              Read the Full Spec ↗
+              Read the Technical Spec ↗
             </a>
             <a href="https://fixdescriptor.vercel.app/" className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-md text-lg font-semibold hover:border-gray-400 hover:bg-gray-50 transition-colors">
               Try the Demo ↗
             </a>
           </div>
+          <p className="text-sm text-gray-500">For asset issuers, custodians, and financial institutions tokenizing securities</p>
         </div>
       </section>
 
@@ -80,26 +84,35 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <div className="flex justify-center mb-4">
             <h2 className="text-3xl font-bold text-gray-900 relative inline-block">
-              <span className="relative z-10">The problem</span>
+              <span className="relative z-10">What breaks today</span>
               <div className="absolute inset-x-0 bottom-1 h-3 bg-gradient-to-r from-red-200/40 to-orange-200/40 -z-10"></div>
             </h2>
-          </div>
-          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-10">Most tokens expose issuer-specific fields/JSON/URIs. The instrument data may exist, but it isn&apos;t standardized for other systems—creating ambiguity, bespoke adapters, and no reliable way to bind a token to a precise instrument definition across platforms.</p>
+              </div>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-10">Without a standard way to describe onchain securities, every integration becomes a custom project. Systems can&apos;t communicate, data gets lost in translation, and updates break everything.</p>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
-              <h3 className="text-base font-semibold text-gray-900 mb-2">Non-standard metadata</h3>
-              <p className="text-sm text-gray-600 mb-3">Issuer fields/JSON varies by project. Fields may exist but not in a canonical uniform representation, so downstream systems can&apos;t reliably map tokens to instruments.</p>
-              <div className="text-xs text-gray-500 bg-white border border-gray-200 rounded-md p-3">e.g., key identity and terms not expressed canonically: Security ID/Source, Maturity Date, Coupon Rate</div>
+            <div className="bg-white p-6 rounded-xl border-2 border-red-100 shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mb-3">
+                <span className="text-red-600 text-xl font-bold">✗</span>
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Integration takes months</h3>
+              <p className="text-sm text-gray-600 mb-3">Your custodian needs custom code to read your token. Their OMS needs different code. Your risk system needs yet another adapter.</p>
+              <div className="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded-md p-3">Result: 2-6 month integration cycles, per platform, per token type.</div>
             </div>
-            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
-              <h3 className="text-base font-semibold text-gray-900 mb-2">Integration gaps with existing systems</h3>
-              <p className="text-sm text-gray-600 mb-3">Without a standard payload onchain, OMS/EMS, custodians, and risk systems need bespoke adapters per token.</p>
-              <div className="text-xs text-gray-500 bg-white border border-gray-200 rounded-md p-3">Desired: one standard payload that downstream systems can recognize consistently.</div>
+            <div className="bg-white p-6 rounded-xl border-2 border-orange-100 shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center mb-3">
+                <span className="text-orange-600 text-xl font-bold">⚠</span>
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Data gets lost in translation</h3>
+              <p className="text-sm text-gray-600 mb-3">Manual mapping between your JSON and their FIX fields introduces errors. Coupon rates misread, maturity dates off by a day, ISINs missing.</p>
+              <div className="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded-md p-3">Result: Settlement failures, compliance gaps, operational risk.</div>
             </div>
-            <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
-              <h3 className="text-base font-semibold text-gray-900 mb-2">No field‑level verifiability</h3>
-              <p className="text-sm text-gray-600 mb-3">Receivers can&apos;t independently check a specific term (e.g., coupon, maturity) against a standardized, issuer‑provided source of truth.</p>
-              <div className="text-xs text-gray-500 bg-white border border-gray-200 rounded-md p-3">Desired: a standard way to attest any field unambiguously.</div>
+            <div className="bg-white p-6 rounded-xl border-2 border-red-100 shadow-sm">
+              <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mb-3">
+                <span className="text-red-600 text-xl font-bold">↻</span>
+              </div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Updates break everything</h3>
+              <p className="text-sm text-gray-600 mb-3">Add a new field? Change your metadata format? Every adapter breaks. You spend weeks coordinating updates across counterparties.</p>
+              <div className="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded-md p-3">Result: Frozen metadata schemas, no room to evolve.</div>
             </div>
           </div>
           
@@ -112,7 +125,8 @@ export default function Home() {
       <section id="what" className="relative z-10 container mx-auto px-6 py-20">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-3 text-center">What ERC‑FIX is</h2>
-          <p className="text-base text-gray-600 text-center mb-8 max-w-3xl mx-auto">ERC‑FIX is a simple standard that lets tokens carry instrument information in a way that other systems understand. It uses the market’s existing language—FIX—for identification and terms, and defines a uniform, deterministic way to attach that information to the token.</p>
+          <p className="text-base text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+          ERC-FIX embeds a standard FIX descriptor directly in your token contract - so every financial system can read it without custom code. It uses the market’s existing language—FIX—for identification and terms, and defines a uniform, deterministic way to attach that information to the token.</p>
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="bg-white p-6 rounded-xl border border-gray-200">
               <h3 className="text-base font-semibold text-gray-900 mb-2">Use the language markets speak</h3>
@@ -215,6 +229,99 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Why Embedded Section */}
+      <section className="relative z-10 container mx-auto px-6 py-16 bg-gradient-to-br from-blue-50/30 to-purple-50/30">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">Why embedded?</h2>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-10">Why put the descriptor in the contract itself instead of a database or external registry?</p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-xl border-2 border-gray-200 shadow-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center">
+                  <span className="text-red-600 text-xl font-bold">✗</span>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">Off-chain database</h3>
+              </div>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500">•</span>
+                  <span>Goes offline, data vanishes</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500">•</span>
+                  <span>Sync issues with on-chain state</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500">•</span>
+                  <span>Single point of failure</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-red-500">•</span>
+                  <span>No cryptographic guarantees</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-white p-6 rounded-xl border-2 border-gray-200 shadow-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center">
+                  <span className="text-orange-600 text-xl font-bold">⚠</span>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">External registry</h3>
+              </div>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="text-orange-500">•</span>
+                  <span>Permission gatekeeping</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange-500">•</span>
+                  <span>Centralized control over who can register</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange-500">•</span>
+                  <span>Extra contract interaction required</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-orange-500">•</span>
+                  <span>Governance overhead</span>
+                </li>
+              </ul>
+            </div>
+            <div className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl border-2 border-green-200 shadow-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center">
+                  <span className="text-green-600 text-xl font-bold">✓</span>
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900">Embedded (ERC‑FIX)</h3>
+              </div>
+              <ul className="space-y-2 text-sm text-gray-600">
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">•</span>
+                  <span><strong>Always available</strong> with the token</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">•</span>
+                  <span><strong>Permissionless</strong> — issuer controls</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">•</span>
+                  <span><strong>Implicit mapping:</strong> address → descriptor</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-green-500">•</span>
+                  <span><strong>Cryptographically verifiable</strong></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 bg-white p-6 rounded-xl border-2 border-blue-100">
+            <p className="text-sm text-gray-700 text-center">
+              <strong>The key design principle:</strong> The descriptor lives with the asset. No external dependencies, no gatekeepers, no sync issues. Just read the contract.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* How it works Section */}
       <section id="how" className="relative z-10 bg-gradient-to-br from-gray-50 to-blue-50/30 container mx-auto px-6 py-20">
         <div className="max-w-4xl mx-auto">
@@ -286,20 +393,162 @@ export default function Home() {
       {/* Why FIX (motivation) */}
       <section className="relative z-10 bg-gradient-to-br from-orange-50/50 to-blue-50/50 container mx-auto px-6 py-14">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">Why FIX</h2>
-          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-8">FIX is the lingua franca for instrument identity and trading across traditional markets. Meeting systems where they already are dramatically reduces integration cost and risk.</p>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-xl border border-gray-200">
-              <h3 className="text-base font-semibold text-gray-900 mb-2">De‑facto market language</h3>
-              <p className="text-sm text-gray-600">Used by venues, OMS/EMS, custodians, data vendors, and risk systems.</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">Why FIX is the answer</h2>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-2">
+            <strong>FIX (Financial Information eXchange)</strong> is the global standard that powers securities trading. It&apos;s how Bloomberg, exchanges, custodians, and every major financial platform already communicate.
+          </p>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-8">
+            Instead of inventing yet another format, use the language traditional finance already speaks.
+          </p>
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+              <div className="text-3xl font-bold text-orange-600 mb-2">300+</div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Trading venues worldwide</h3>
+              <p className="text-sm text-gray-600">Exchanges, ECNs, OMS/EMS, custodians—all use FIX natively.</p>
             </div>
-            <div className="bg-white p-6 rounded-xl border border-gray-200">
-              <h3 className="text-base font-semibold text-gray-900 mb-2">Rich, well‑specified fields</h3>
-              <p className="text-sm text-gray-600">Canonical tags for identification and terms (e.g., 48/22, 541, 223, 461).</p>
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+              <div className="text-3xl font-bold text-blue-600 mb-2">Billions</div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Trades processed daily</h3>
+              <p className="text-sm text-gray-600">Battle-tested for decades across equities, fixed income, FX, and derivatives.</p>
             </div>
-            <div className="bg-white p-6 rounded-xl border border-gray-200">
-              <h3 className="text-base font-semibold text-gray-900 mb-2">Battle‑tested interop</h3>
-              <p className="text-sm text-gray-600">Standard schemas and workflows already power global fixed‑income infrastructure.</p>
+            <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+              <div className="text-3xl font-bold text-purple-600 mb-2">Zero</div>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">New integrations needed</h3>
+              <p className="text-sm text-gray-600">Your token speaks FIX, their systems already understand it.</p>
+            </div>
+          </div>
+          <div className="bg-white p-6 rounded-xl border-2 border-orange-100">
+            <p className="text-sm text-gray-700 text-center">
+              <strong>The key insight:</strong> Traditional finance isn&apos;t going to rebuild for blockchain. But if your tokens speak FIX, they slot into existing infrastructure with zero friction.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Before/After Comparison */}
+      <section className="relative z-10 container mx-auto px-6 py-14 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">Before vs. After</h2>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">See the difference between custom integration and standardized descriptors.</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Before */}
+            <div className="bg-gradient-to-br from-red-50 to-orange-50 p-8 rounded-xl border-2 border-red-200">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center">
+                  <span className="text-red-600 text-2xl font-bold">✗</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Without ERC‑FIX</h3>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-white p-4 rounded-lg border border-red-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 text-lg flex-shrink-0">1.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Issue token with custom JSON</p>
+                      <p className="text-xs text-gray-600 mt-1">Your format, your field names</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-red-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 text-lg flex-shrink-0">2.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Send docs to each platform</p>
+                      <p className="text-xs text-gray-600 mt-1">PDFs, spreadsheets, email threads</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-red-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 text-lg flex-shrink-0">3.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">They build custom adapters</p>
+                      <p className="text-xs text-gray-600 mt-1">2-6 months per integration</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-red-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 text-lg flex-shrink-0">4.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Manual data mapping</p>
+                      <p className="text-xs text-gray-600 mt-1">Errors, delays, reconciliation</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-red-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-red-500 text-lg flex-shrink-0">5.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Updates break everything</p>
+                      <p className="text-xs text-gray-600 mt-1">Coordinate changes across all counterparties</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 p-4 bg-red-100 rounded-lg">
+                <p className="text-sm font-semibold text-red-900 text-center">Timeline: 2-4 months per integration</p>
+              </div>
+            </div>
+
+            {/* After */}
+            <div className="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-xl border-2 border-green-200">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center">
+                  <span className="text-green-600 text-2xl font-bold">✓</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">With ERC‑FIX</h3>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-white p-4 rounded-lg border border-green-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 text-lg flex-shrink-0">1.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Embed FIX descriptor in token</p>
+                      <p className="text-xs text-gray-600 mt-1">Standard format, canonical fields</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-green-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 text-lg flex-shrink-0">2.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Systems read it natively</p>
+                      <p className="text-xs text-gray-600 mt-1">OMS, custodians, risk—all understand FIX</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-green-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 text-lg flex-shrink-0">3.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Automatic integration</p>
+                      <p className="text-xs text-gray-600 mt-1">No custom code, no adapters</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-green-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 text-lg flex-shrink-0">4.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Cryptographic verification</p>
+                      <p className="text-xs text-gray-600 mt-1">Prove any field with Merkle proofs</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded-lg border border-green-200">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-500 text-lg flex-shrink-0">5.</span>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Updates are versioned</p>
+                      <p className="text-xs text-gray-600 mt-1">Systems recognize new formats automatically</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-6 p-4 bg-green-100 rounded-lg">
+                <p className="text-sm font-semibold text-green-900 text-center">Timeline: Days to deploy, instant recognition</p>
+              </div>
             </div>
           </div>
         </div>
@@ -326,6 +575,114 @@ export default function Home() {
             <div className="bg-gradient-to-br from-purple-50 to-purple-100/50 p-6 rounded-xl border border-purple-200/50">
               <h3 className="text-base font-semibold text-gray-900 mb-2">Merkle‑proof verification</h3>
               <p className="text-sm text-gray-600">Per‑field proofs against the committed root—no on‑chain FIX parsing required.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Concrete Benefits Section */}
+      <section className="relative z-10 container mx-auto px-6 py-16 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">What you get</h2>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-10">Concrete, measurable improvements to how you issue and manage tokenized securities.</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white p-8 rounded-xl border-2 border-green-100 shadow-lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-7 h-7 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Integration: months → days</h3>
+                  <p className="text-gray-600">Custodians, OMS/EMS, risk systems read your token natively. No custom adapters. No mapping documents. Deploy once, integrate everywhere.</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-xl border-2 border-blue-100 shadow-lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Zero translation errors</h3>
+                  <p className="text-gray-600">No manual JSON-to-FIX mapping. No misread coupons or wrong maturity dates. The descriptor is canonical and cryptographically verifiable.</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-xl border-2 border-purple-100 shadow-lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Real-time settlement</h3>
+                  <p className="text-gray-600">When every system speaks the same language, you can settle cross-platform trades instantly—no reconciliation delays.</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white p-8 rounded-xl border-2 border-orange-100 shadow-lg">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-orange-100 flex items-center justify-center flex-shrink-0">
+                  <svg className="w-7 h-7 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Update without breaking</h3>
+                  <p className="text-gray-600">Embedded descriptors with versioning. Add fields, update terms, and systems automatically recognize the new format.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Use Cases Section */}
+      <section className="relative z-10 container mx-auto px-6 py-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">Who this is for</h2>
+          <p className="text-gray-600 text-center max-w-3xl mx-auto mb-12">Real scenarios where ERC‑FIX eliminates weeks of integration work.</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-gradient-to-br from-orange-50 to-white p-8 rounded-xl border border-orange-200 shadow-sm">
+              <div className="w-14 h-14 rounded-xl bg-orange-100 flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Bond issuer</h3>
+              <p className="text-sm text-gray-600 mb-4">You&apos;re tokenizing a corporate bond. Instead of sending PDF term sheets to every custodian, your token carries the full FIX descriptor.</p>
+              <div className="bg-white p-3 rounded-lg border border-orange-100 text-xs text-gray-700">
+                <strong>Result:</strong> Custodians import positions automatically. No manual data entry, no classification errors.
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl border border-blue-200 shadow-sm">
+              <div className="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Cross-platform settlement</h3>
+              <p className="text-sm text-gray-600 mb-4">A tokenized treasury trades between DeFi and a TradFi custodian. Both sides need to verify terms instantly.</p>
+              <div className="bg-white p-3 rounded-lg border border-blue-100 text-xs text-gray-700">
+                <strong>Result:</strong> DeFi contract reads FIX descriptor. Custodian&apos;s OMS reads same descriptor. Settlement happens in minutes.
+              </div>
+            </div>
+            <div className="bg-gradient-to-br from-purple-50 to-white p-8 rounded-xl border border-purple-200 shadow-sm">
+              <div className="w-14 h-14 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">Regulatory reporting</h3>
+              <p className="text-sm text-gray-600 mb-4">Regulators need standardized instrument data for oversight. Your token already has it in the format they expect.</p>
+              <div className="bg-white p-3 rounded-lg border border-purple-100 text-xs text-gray-700">
+                <strong>Result:</strong> Generate compliance reports directly from on-chain data. No manual reconciliation.
+              </div>
             </div>
           </div>
         </div>
