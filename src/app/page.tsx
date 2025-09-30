@@ -3,11 +3,9 @@
 export default function Home() {
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Background Geometric Elements */}
+      {/* Background Geometric Elements (subtle) */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-orange-100/30 to-blue-100/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-tr from-purple-100/30 to-teal-100/30 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-blue-100/20 to-purple-100/20 rounded-full blur-2xl"></div>
+        <div className="absolute top-16 left-1/2 -translate-x-1/2 w-[28rem] h-[28rem] bg-gradient-to-br from-orange-100/30 to-blue-100/30 rounded-full blur-3xl"></div>
       </div>
 
       {/* Skip to content link for accessibility */}
@@ -45,166 +43,38 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="main-content" className="relative z-10 container mx-auto px-6 py-20">
+      <section id="main-content" className="relative z-10 container mx-auto px-6 py-24">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 leading-tight">
-            ERC-FIX: the tiny standard that lets{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-600">
-              FIX systems
-            </span>{" "}
-            read Ethereum securities
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+            ERC‑FIX: embedded FIX descriptors for onchain securities
           </h1>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-orange-100 to-blue-100 text-gray-700 text-xs font-semibold mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
-            FIX → Canonical Tree → CBOR → Merkle Root
-          </div>
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto">
-            Tokenized bonds shouldn&apos;t be mystery ERC-20s. ERC-FIX adds a canonical FIX instrument string to the token—so banks, brokers, and asset managers can parse terms instantly and plug into existing FIX workflows.
+          <p className="text-lg md:text-xl text-gray-600 mb-10 leading-relaxed max-w-3xl mx-auto">
+            Embed a canonical FIX descriptor in your asset contract. Verify any field with Merkle proofs. Plug into existing FIX workflows without custom adapters.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <a href="#spec" className="bg-gradient-to-r from-orange-500 to-blue-600 text-white px-8 py-4 rounded-md text-lg font-semibold hover:from-orange-600 hover:to-blue-700 transition-all">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#spec" className="bg-gray-900 text-white px-8 py-4 rounded-md text-lg font-semibold hover:bg-black transition-colors">
               Read the Spec
             </a>
             <a href="https://fixdescriptor.vercel.app/" className="border border-gray-300 text-gray-700 px-8 py-4 rounded-md text-lg font-semibold hover:bg-gray-50 transition-colors">
               Try the Demo ↗
             </a>
-            <a href="https://github.com/swapnilraj/fix-descriptor" className="border border-gray-300 text-gray-700 px-8 py-4 rounded-md text-lg font-semibold hover:bg-gray-50 transition-colors">
-              Get the Library ↗
-            </a>
-          </div>
-          <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
-            <span>Open-source</span>
-            <span>•</span>
-            <span>EVM-compatible</span>
-            <span>•</span>
-            <span>FIX-native</span>
-            <span>•</span>
-            <span>Audited</span>
           </div>
         </div>
       </section>
 
-      {/* Why it matters Section */}
-      <section id="why" className="relative z-10 container mx-auto px-6 py-20">
+      {/* Problem (today) Section - moved up for narrative clarity */}
+      <section className="relative z-10 container mx-auto px-6 py-16">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Why it matters</h2>
-          
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-200 to-orange-300 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Native FIX legibility</h3>
-              <p className="text-gray-600">Token → FIX → parse → map, in one pass</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-blue-300 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Interoperability</h3>
-              <p className="text-gray-600">Same token slots into FIX-integrated systems without bespoke adapters</p>
-            </div>
-            <div className="text-center">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-200 to-purple-300 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Auditability</h3>
-              <p className="text-gray-600">On-token payload + registry digest give clean, revocable link</p>
-            </div>
-          </div>
-          
-          <div className="bg-gray-50 p-8 rounded-lg mb-8">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 rounded-md bg-gradient-to-br from-orange-400 to-orange-600"></div>
-                  <span className="text-sm font-semibold text-gray-900">De-facto market language</span>
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed">FIX powers trading and instrument data across venues, OMS/EMS, custodians, and risk systems.</p>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 rounded-md bg-gradient-to-br from-blue-400 to-blue-600"></div>
-                  <span className="text-sm font-semibold text-gray-900">Keep existing workflows</span>
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed">Describe once in FIX; verify anywhere with a proof. No bespoke adapters.</p>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-xl p-5 shadow-sm sm:col-span-2">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-6 h-6 rounded-md bg-gradient-to-br from-purple-400 to-teal-500"></div>
-                  <span className="text-sm font-semibold text-gray-900">Verifiable on-chain</span>
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed">ERC‑FIX adds a deterministic commitment so identity and terms can be proven on-chain.</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Micro FAQ */}
-          <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-gray-900 text-center mb-8">Micro-FAQ</h3>
-            <div className="space-y-4">
-              <div className="border-l-4 border-gray-300 pl-4">
-                <h4 className="font-semibold text-gray-900 mb-1">Does this replace compliance?</h4>
-                <p className="text-gray-600">No. ERC-FIX handles instrument identity and terms. Compliance remains separate.</p>
-              </div>
-              <div className="border-l-4 border-gray-300 pl-4">
-                <h4 className="font-semibold text-gray-900 mb-1">Why FIX?</h4>
-                <p className="text-gray-600">FIX is the established standard for credit trading. ERC-FIX speaks that language.</p>
-              </div>
-              <div className="border-l-4 border-gray-300 pl-4">
-                <h4 className="font-semibold text-gray-900 mb-1">Sidecar vs native?</h4>
-                <p className="text-gray-600">Phase 1: sidecar for existing tokens. Phase 2: native interface for new issuances.</p>
-              </div>
-            </div>
-          </div>
+          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">The problem (today)</h2>
+          <ul className="grid md:grid-cols-3 gap-4 text-gray-700">
+            <li className="bg-gray-50 p-4 rounded-lg">Token metadata is ad-hoc; FIX identity doesn&apos;t resolve</li>
+            <li className="bg-gray-50 p-4 rounded-lg">On-chain FIX parsing is gas-heavy and brittle</li>
+            <li className="bg-gray-50 p-4 rounded-lg">No deterministic binding to a FIX dictionary</li>
+          </ul>
         </div>
       </section>
 
-      {/* Standards Body Section */}
-      <section className="relative z-10 container mx-auto px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Independent Standards Body</h2>
-          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-            ERC-FIX is developed by an independent, non-profit association of leading actors from the financial, 
-            technological, and legal sectors to create common standards for FIX-legible tokenized securities.
-          </p>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="w-12 h-12 bg-gradient-to-br from-orange-200 to-orange-300 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Audited Smart Contracts</h3>
-              <p className="text-gray-600">Security-first approach with comprehensive smart contract audits</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-blue-300 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Industry Governance</h3>
-              <p className="text-gray-600">Governed by financial institutions, technology providers, and legal experts</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg">
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-200 to-purple-300 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Regulatory Alignment</h3>
-              <p className="text-gray-600">Designed to meet existing financial regulations and compliance requirements</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* What ERC-FIX is Section */}
       <section id="what" className="relative z-10 container mx-auto px-6 py-20">
@@ -219,43 +89,43 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">Token Interface</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">Embedded Descriptor</h3>
               <ul className="space-y-4 text-gray-600">
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3">•</span>
-                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">fixSchema()</code> → e.g. &quot;FIX.4.4&quot;</span>
+                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">getFixDescriptor()</code> → complete descriptor struct</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3">•</span>
-                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">fixMessage()</code> → canonical SOH-delimited FIX instrument block</span>
+                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">getFixRoot()</code> → Merkle root for verification</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-orange-500 mr-3">•</span>
-                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">fixDigest()</code> → keccak256(fixMessage)</span>
+                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">verifyField()</code> → prove any field with Merkle proof</span>
                 </li>
               </ul>
             </div>
             
-            {/* Simple Registry Card */}
+            {/* CBOR Storage Card */}
             <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-blue-300 rounded-lg flex items-center justify-center mb-6">
                 <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-6">Simple Registry</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-6">CBOR Storage</h3>
               <ul className="space-y-4 text-gray-600">
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3">•</span>
-                  <span>Issuer address self-asserts token metadata</span>
+                  <span>Canonical CBOR stored via SSTORE2-style contracts</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3">•</span>
-                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">register()</code>, <code className="bg-gray-100 px-2 py-1 rounded text-sm">revoke()</code>, <code className="bg-gray-100 px-2 py-1 rounded text-sm">recordOf()</code></span>
+                  <span>FIX dictionary hash for semantic consistency</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-blue-500 mr-3">•</span>
-                  <span><code className="bg-gray-100 px-2 py-1 rounded text-sm">verifyDigest()</code> for integrity check</span>
+                  <span>Gas-efficient retrieval with <code className="bg-gray-100 px-2 py-1 rounded text-sm">EXTCODECOPY</code></span>
                 </li>
               </ul>
             </div>
@@ -267,11 +137,15 @@ export default function Home() {
               <h4 className="text-white font-semibold">Solidity Interface</h4>
               <button 
                 className="text-gray-400 hover:text-white transition-colors"
-                onClick={() => navigator.clipboard.writeText(`interface IERC20FixMeta {
-    function fixSchema() external view returns (string memory);
-    function fixMessage() external view returns (string memory);
-    function fixDigest() external view returns (bytes32);
-    // optional helpers: isin(), maturityDate(), couponRate(), cfi()
+                onClick={() => navigator.clipboard.writeText(`interface IFixDescriptor {
+    function getFixDescriptor() external view returns (FixDescriptor memory);
+    function getFixRoot() external view returns (bytes32);
+    function verifyField(
+        bytes calldata pathCBOR,
+        bytes calldata value,
+        bytes32[] calldata proof,
+        bool[] calldata directions
+    ) external view returns (bool);
 }`)}
                 aria-label="Copy Solidity interface to clipboard"
               >
@@ -279,11 +153,15 @@ export default function Home() {
               </button>
             </div>
             <pre className="text-gray-300 text-sm overflow-x-auto">
-              <code>{`interface IERC20FixMeta {
-    function fixSchema() external view returns (string memory);
-    function fixMessage() external view returns (string memory);
-    function fixDigest() external view returns (bytes32);
-    // optional helpers: isin(), maturityDate(), couponRate(), cfi()
+              <code>{`interface IFixDescriptor {
+    function getFixDescriptor() external view returns (FixDescriptor memory);
+    function getFixRoot() external view returns (bytes32);
+    function verifyField(
+        bytes calldata pathCBOR,
+        bytes calldata value,
+        bytes32[] calldata proof,
+        bool[] calldata directions
+    ) external view returns (bool);
 }`}</code>
             </pre>
           </div>
@@ -300,18 +178,18 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">1</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Mint</h3>
-              <p className="text-gray-600">Issuer includes ERC-FIX interface in token</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Embed</h3>
+              <p className="text-gray-600">Issuer embeds FIX descriptor directly in asset contract</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">2</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Register</h3>
-              <p className="text-gray-600">Issuer registers token&apos;s fixDigest in registry</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Store</h3>
+              <p className="text-gray-600">CBOR data stored as contract bytecode, Merkle root committed</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-500 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">3</div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Resolve</h3>
-              <p className="text-gray-600">Receiver reads fixMessage, verifies digest, parses FIX</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Verify</h3>
+              <p className="text-gray-600">Anyone can verify specific fields using Merkle proofs</p>
             </div>
           </div>
           
@@ -358,7 +236,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why it matters Section */}
+      {/* Why it matters Section - consolidated */}
       <section id="why" className="relative z-10 container mx-auto px-6 py-20">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Why it matters</h2>
@@ -379,8 +257,8 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Interoperability</h3>
-              <p className="text-gray-600">Same token slots into FIX-integrated systems without bespoke adapters</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">No Gatekeepers</h3>
+              <p className="text-gray-600">Asset address → descriptor mapping with no central registry or permissions</p>
             </div>
             <div className="text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-purple-200 to-purple-300 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -389,14 +267,14 @@ export default function Home() {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Auditability</h3>
-              <p className="text-gray-600">On-token payload + registry digest give clean, revocable link</p>
+              <p className="text-gray-600">Embedded descriptor + Merkle proofs give cryptographic verification</p>
             </div>
           </div>
           
           <div className="bg-gray-50 p-8 rounded-lg mb-8">
             <p className="text-gray-600 leading-relaxed text-center">
-              ERC-FIX connects Ethereum securities to the FIX rails that already run modern credit markets. 
-              No new schemas, no custom adapters—just a clean bridge from token address to existing workflows.
+              ERC-FIX embeds FIX descriptors directly in asset contracts with cryptographic verification. 
+              No external dependencies, no registries—just self-describing tokens that speak FIX natively.
             </p>
           </div>
           
@@ -413,25 +291,15 @@ export default function Home() {
                 <p className="text-gray-600">FIX is the established standard for credit trading. ERC-FIX speaks that language.</p>
               </div>
               <div className="border-l-4 border-gray-300 pl-4">
-                <h4 className="font-semibold text-gray-900 mb-1">Sidecar vs native?</h4>
-                <p className="text-gray-600">Phase 1: sidecar for existing tokens. Phase 2: native interface for new issuances.</p>
+                <h4 className="font-semibold text-gray-900 mb-1">How is this different from metadata URIs?</h4>
+                <p className="text-gray-600">ERC-FIX embeds descriptors directly in contracts with cryptographic proofs, not external references.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Problem (today) Section */}
-      <section className="relative z-10 container mx-auto px-6 py-12">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">The problem (today)</h2>
-          <ul className="grid md:grid-cols-3 gap-4 text-gray-700">
-            <li className="bg-gray-50 p-4 rounded-lg">Token metadata is ad-hoc; FIX identity doesn&apos;t resolve</li>
-            <li className="bg-gray-50 p-4 rounded-lg">On-chain FIX parsing is gas-heavy and brittle</li>
-            <li className="bg-gray-50 p-4 rounded-lg">No deterministic binding to a FIX dictionary</li>
-          </ul>
-        </div>
-      </section>
+      {/* Problem (today) Section - removed old duplicate (now placed above) */}
 
       {/* Spec Highlights Section */}
       <section id="spec" className="relative z-10 container mx-auto px-6 py-20">
@@ -483,7 +351,7 @@ export default function Home() {
                 <h4 className="text-white font-semibold">Verifier API</h4>
                 <button 
                   className="text-gray-400 hover:text-white transition-colors"
-                  onClick={() => navigator.clipboard.writeText(`function verify(\n  bytes32 root,\n  bytes calldata pathCBOR,\n  bytes calldata value,\n  bytes32[] calldata proof\n) internal pure returns (bool);`)}
+                  onClick={() => navigator.clipboard.writeText(`function verify(\n  bytes32 root,\n  bytes calldata pathCBOR,\n  bytes calldata value,\n  bytes32[] calldata proof,\n  bool[] calldata directions\n) internal pure returns (bool);`)}
                   aria-label="Copy verify signature"
                 >Copy</button>
               </div>
@@ -491,7 +359,8 @@ export default function Home() {
   bytes32 root,
   bytes calldata pathCBOR,
   bytes calldata value,
-  bytes32[] calldata proof
+  bytes32[] calldata proof,
+  bool[] calldata directions
 ) internal pure returns (bool);`}</code></pre>
               <p className="text-gray-400 text-xs mt-3">Storage: CBOR via SSTORE2-style contract; retrieve with EXTCODECOPY. Verifiers should check <code className="bg-gray-800 px-1 rounded">dictHash</code>.</p>
             </div>
@@ -537,9 +406,10 @@ export default function Home() {
               <button 
                 className="text-gray-400 hover:text-white transition-colors"
                 onClick={() => navigator.clipboard.writeText(`resolve(token) → { 
-  fix, 
-  digestVerified, 
-  fields: { ISIN, Maturity, Coupon, Currency, CFICode } 
+  descriptor: { fixMajor, fixMinor, dictHash, fixRoot, fixCBORPtr },
+  cbor: decodedCBOR,
+  fields: { ISIN, Maturity, Coupon, Currency, CFICode },
+  proveField: (path) => { proof, directions }
 }`)}
                 aria-label="Copy SDK example to clipboard"
               >
@@ -548,15 +418,56 @@ export default function Home() {
             </div>
             <pre className="text-gray-300 text-sm overflow-x-auto">
               <code>{`resolve(token) → { 
-  fix, 
-  digestVerified, 
-  fields: { ISIN, Maturity, Coupon, Currency, CFICode } 
+  descriptor: { fixMajor, fixMinor, dictHash, fixRoot, fixCBORPtr },
+  cbor: decodedCBOR,
+  fields: { ISIN, Maturity, Coupon, Currency, CFICode },
+  proveField: (path) => { proof, directions }
 }`}</code>
             </pre>
           </div>
           
           <div className="text-center text-gray-600 mb-8">
-            <p>Versioning and revoke path supported. Provenance (EIP-1271) — optional v1.</p>
+            <p>Descriptor updates via new CBOR contracts. ERC165 interface detection. No external dependencies.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Independent Standards Body - moved near footer */}
+      <section className="relative z-10 container mx-auto px-6 py-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">Independent Standards Body</h2>
+          <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+            ERC-FIX is developed by an independent, non-profit association of leading actors from the financial,
+            technological, and legal sectors to create common standards for FIX-legible tokenized securities.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 mb-4">
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-200 to-orange-300 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Audited Smart Contracts</h3>
+              <p className="text-gray-600">Security-first approach with comprehensive smart contract audits</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-200 to-blue-300 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Industry Governance</h3>
+              <p className="text-gray-600">Governed by financial institutions, technology providers, and legal experts</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-200 to-purple-300 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Regulatory Alignment</h3>
+              <p className="text-gray-600">Designed to meet existing financial regulations and compliance requirements</p>
+            </div>
           </div>
         </div>
       </section>
