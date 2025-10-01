@@ -62,10 +62,10 @@ export default function Home() {
             Traditional finance and blockchain don&apos;t speak the same language
           </h1>
           <p className="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed max-w-3xl mx-auto">
-            You tokenize a bond. Your custodian&apos;s system can&apos;t read it. Your risk platform can&apos;t classify it. You build custom adapters for every platform—and they break with every update.
+            You tokenize a bond. Your custodian&apos;s system can&apos;t read it. Your risk platform can&apos;t classify it. You build custom adapters for every platform — and they break with every update.
           </p>
           <p className="text-base md:text-lg text-gray-700 mb-8 leading-relaxed max-w-3xl mx-auto font-medium">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-600">ERC‑FIX</span> solves this by embedding standardized <Tooltip text="FIX (Financial Information eXchange) is the global protocol that powers securities trading across 300+ venues worldwide"><span className="cursor-help underline decoration-dotted">FIX</span></Tooltip> descriptors directly in your token contract —— so every system can read it natively. No adapters. No waiting.
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-600">ERC‑FIX</span> solves this by embedding standardized <Tooltip text="FIX (Financial Information eXchange) is the global protocol that powers securities trading across 300+ venues worldwide"><span className="cursor-help underline decoration-dotted">FIX</span></Tooltip> descriptors directly in your token contract — so every system can read it natively. No adapters. No waiting.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <a href="https://fixdescriptor.vercel.app/spec" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-orange-500 to-blue-600 text-white px-8 py-4 rounded-md text-lg font-semibold hover:from-orange-600 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl">
@@ -96,7 +96,7 @@ export default function Home() {
               </div>
               <h3 className="text-base font-semibold text-gray-900 mb-2">Integration takes months</h3>
               <p className="text-sm text-gray-600 mb-3">Your custodian needs custom code to read your token. Their OMS needs different code. Your risk system needs yet another adapter.</p>
-              <div className="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded-md p-3">Result: 2-6 month integration cycles, per platform, per token type.</div>
+              <div className="text-xs text-gray-500 bg-gray-50 border border-gray-200 rounded-md p-3">Result: 2-4 month integration cycles per platform, per token type.</div>
             </div>
             <div className="bg-white p-6 rounded-xl border-2 border-orange-100 shadow-sm">
               <div className="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center mb-3">
@@ -726,7 +726,7 @@ export default function Home() {
           <div className="bg-gray-50 p-8 rounded-lg mb-8">
             <p className="text-gray-600 leading-relaxed text-center">
               ERC-FIX embeds FIX descriptors directly in asset contracts with cryptographic verification. 
-              No external dependencies, no registries—just self-describing tokens that speak FIX natively.
+              No external dependencies, no registries — just self-describing tokens that speak FIX natively.
             </p>
           </div>
           
